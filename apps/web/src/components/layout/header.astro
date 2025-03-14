@@ -1,0 +1,162 @@
+---
+// Get the current path to highlight active navigation items
+const currentPath = Astro.url.pathname;
+
+// Check if user is logged in
+const isLoggedIn = Astro.cookies.has("token");
+
+// Navigation items for the header
+const navItems = [
+  { name: "Features", href: "/features" },
+  { name: "Pricing", href: "/pricing" },
+  { name: "Blog", href: "/blog" },
+  { name: "About", href: "/about" },
+];
+---
+
+<header class="bg-white border-b border-gray-200">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between h-16">
+      <!-- Logo and main navigation -->
+      <div class="flex">
+        <div class="flex-shrink-0 flex items-center">
+          <a href="/">
+            <img class="h-8 w-auto" src="/logo.svg" alt="Summarizer" />
+          </a>
+        </div>
+        <nav class="hidden md:ml-6 md:flex md:space-x-6">
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              class={`inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 ${
+                currentPath === item.href
+                  ? "border-primary-500 text-gray-900"
+                  : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+              }`}
+            >
+              {item.name}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      <!-- Authentication buttons -->
+      <div class="hidden md:ml-6 md:flex md:items-center md:space-x-4">
+        {isLoggedIn ? (
+          
+          <a
+            href="/app/dashboard"
+            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
+          >
+            Dashboard
+          </a>
+        ) : (
+          <>
+            <a
+              href="/login"
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary-600 bg-white hover:bg-gray-50"
+            >
+              Log in
+            </a>
+            <a
+              href="/signup"
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
+            >
+              Sign up
+            </a>
+          </>
+        )}
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="flex items-center md:hidden">
+        <button
+          type="button"
+          class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <!-- Heroicon name: menu -->
+          <svg
+            class="h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state -->
+  <div class="hidden mobile-menu md:hidden">
+    <div class="pt-2 pb-3 space-y-1">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
+            currentPath === item.href
+              ? "bg-primary-50 border-primary-500 text-primary-700"
+              : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
+          }`}
+        >
+          {item.name}
+        </a>
+      ))}
+    </div>
+    <div class="pt-4 pb-3 border-t border-gray-200">
+      <div class="space-y-1">
+        {isLoggedIn ? (
+          <a
+            href="/app/dashboard"
+            class="block pl-3 pr-4 py-2 border-l-4 border-primary-500 text-base font-medium text-primary-700 bg-primary-50"
+          >
+            Dashboard
+          </a>
+        ) : (
+          <>
+            <a
+              href="/login"
+                 class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
+            >
+              Log in
+            </a>
+            <a
+              href="/signup"
+              class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
+            >
+              Sign up
+            </a>
+          </>
+        )}
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Simple mobile menu toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const button = document.querySelector('.mobile-menu-button');
+    const menu = document.querySelector('.mobile-menu');
+    
+    if (button && menu) {
+      button.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        
+        // Update aria-expanded
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', (!expanded).toString());
+      });
+    }
+  });
+</script>
