@@ -3,7 +3,7 @@
   "ui": "src/components",
   "utils": "src/utils",
   "gray": "zinc",
-  "css": "src/styles/globals.css",
+  "css": "src/styles/global.css",
   "alias": "~",
   "language": "typescript"
 }

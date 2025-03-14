@@ -1,0 +1,20 @@
+{
+    "tailwindCSS.experimental.configFile": "packages/ui/src/styles/globals.css",
+    "tailwindCSS.experimental.classRegex": [
+        [
+            "tv\\(([^)]*)\\)",
+            "[\"'`]([^\"'`]*).*?[\"'`]"
+        ],
+        [
+            "cn\\(([^)]*)\\)",
+            "[\"'`]([^\"'`]*).*?[\"'`]"
+        ]
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.biome": "explicit"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    }
+}

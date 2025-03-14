@@ -18,7 +18,7 @@ const buttonStyles = tv({
     "pressed:border-(--btn-border) pressed:bg-(--btn-bg)",
   ],
   variants: {
-    intent: {
+    variant: {
       primary: [
         "outline-ring [--btn-bg:theme(--color-primary/95%)] [--btn-border:var(--color-primary)] [--btn-fg:var(--color-primary-fg)] dark:[--btn-bg:theme(--color-primary/90%)]",
         "[--btn-bg-hovered:theme(--color-primary/87%)] [--btn-border-hovered:theme(--color-primary/87%)] dark:[--btn-bg-hovered:theme(--color-primary)] dark:[--btn-border-hovered:theme(--color-primary)]",
@@ -72,14 +72,14 @@ const buttonStyles = tv({
     },
   },
   defaultVariants: {
-    intent: "primary",
+    variant: "primary",
     size: "medium",
     shape: "square",
   },
 });
 
 interface ButtonProps extends ButtonPrimitiveProps {
-  intent?: "primary" | "secondary" | "danger" | "warning" | "outline" | "plain";
+  variant?: "primary" | "secondary" | "danger" | "warning" | "outline" | "plain";
   size?: "medium" | "large" | "square-petite" | "extra-small" | "small";
   shape?: "square" | "circle";
   ref?: React.Ref<HTMLButtonElement>;
@@ -87,7 +87,7 @@ interface ButtonProps extends ButtonPrimitiveProps {
 
 const Button = ({
   className,
-  intent,
+  variant,
   size,
   shape,
   ref,
@@ -100,10 +100,10 @@ const Button = ({
       className={composeRenderProps(className, (className, renderProps) =>
         buttonStyles({
           ...renderProps,
-          intent,
+          variant,
           size,
           shape,
-          className,
+          className: `ui-button-debug ${className || ''}`,
         })
       )}
     >
