@@ -1,0 +1,16 @@
+{
+  "name": "@yts/shared",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "@yts/api": "*",
+    "typescript": "5.8.2"
+  },
+  "dependencies": {
+    "@elysiajs/eden": "latest",
+    "elysia": "latest"
+  }
+}
