@@ -2,6 +2,7 @@
 import { Button } from "../ui";
 import AuthMenu from "./auth-menu.astro";
 import { IconAlignmentCenter } from "justd-icons";
+import { Skeleton } from "../ui";
 
 // Get the current path to highlight active navigation items
 const currentPath = Astro.url.pathname;
@@ -58,7 +59,9 @@ const navItems = [
 
     <!-- User menu and mobile menu button -->
     <div class="flex items-center gap-2">
-      <AuthMenu server:defer />
+      <AuthMenu server:defer>
+        <Skeleton className="w-8 h-8" />
+      </AuthMenu>
       <!-- Mobile menu button -->
       <div class="flex items-center md:hidden">
         <Button
