@@ -1,13 +1,12 @@
 ---
 import Layout from "~/layouts/Layout.astro";
-
-import { Button } from "~/components/ui/button";
-
-import { apiClient } from "@yts/shared";
-
-const { data } = await apiClient.api.index.get();
+import { Hero, Features, HowItWorks } from "~/components/marketing";
 ---
 
 <Layout>
-  <Button variant="primary" className="m-2" client:idle>{data}</Button>
+  <div class="py-12 md:py-20">
+    <Hero />
+    <Features />
+  </div>
+  <HowItWorks />
 </Layout>
