@@ -1,0 +1,57 @@
+---
+import { buttonStyles } from "~/components/ui/button";
+import { Badge } from "../ui";
+import demoImage from "./assets/demo.png";
+import Demo from "./demo.astro";
+---
+
+<section class="container mx-auto px-4 md:px-0">
+  <div
+    class="w-full mx-auto max-w-4xl flex flex-col items-center text-center text-balance gap-6"
+  >
+    <div>
+      <Badge className="px-4 py-1 border border-primary/15">
+        New AI Learning Tool
+      </Badge>
+      <h1 class="text-4xl md:text-5xl font-bold text-fg leading-tight">
+        Transform how you learn from YouTube videos
+      </h1>
+    </div>
+    <p class="text-xl text-fg/60">
+      Extract key insights, ask questions, and create personalized learning
+      paths from any YouTube video with our AI-powered platform.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 w-full sm:justify-center">
+      <a
+        href="/signup"
+        class={buttonStyles({ variant: "primary", size: "large" })}
+      >
+        Get Started Free
+      </a>
+      <a
+        href="/pricing"
+        class={buttonStyles({ variant: "plain", size: "large" })}
+      >
+        View Pricing
+      </a>
+    </div>
+    <div class="-mt-4 text-[15px] text-fg/60">
+      <p>No credit card required. Start with our free plan today.</p>
+    </div>
+  </div>
+  <div class="mt-12 max-w-4xl mx-auto">
+    <div class="relative rounded-lg shadow-xl border border-gray-200">
+      <Demo
+        width={1200}
+        height={700}
+        mode="default"
+        className="size-full"
+        imageSrc={demoImage}
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-tr from-primary-500/20 to-transparent"
+      >
+      </div>
+    </div>
+  </div>
+</section>
