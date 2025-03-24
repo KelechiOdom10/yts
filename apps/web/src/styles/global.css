@@ -17,7 +17,7 @@
   /*--font-mono: var(--font-geist), 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace';*/
 
   --font-sans: "Geist Sans", sans-serif;
-  --font-header: "Caveat", cursive;
+  --font-header: "IBM Plex Sans Arabic", sans-serif;
 
   --color-border: var(--border);
   --color-input: var(--input);
