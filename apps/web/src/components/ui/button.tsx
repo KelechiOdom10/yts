@@ -45,10 +45,10 @@ const buttonStyles = tv({
         "inset-shadow-danger-fg/30 pressed:inset-shadow-danger-fg/30 hover:inset-shadow-danger-fg/35",
       ],
       outline: [
-        "inset-ring-0 inset-shadow-none pressed:bg-secondary outline-ring [--btn-border:var(--color-border)] hover:bg-secondary",
+        "inset-ring-0 inset-shadow-none pressed:bg-secondary outline-ring [--btn-border:var(--color-border)] hover:bg-secondary hover:text-secondary-fg",
       ],
       plain:
-        "inset-ring-0 inset-shadow-none pressed:bg-secondary outline-ring [--btn-border:transparent] hover:bg-secondary",
+        "inset-ring-0 inset-shadow-none pressed:bg-secondary outline-ring [--btn-border:transparent]",
     },
     size: {
       "extra-small":
@@ -74,12 +74,18 @@ const buttonStyles = tv({
   defaultVariants: {
     variant: "primary",
     size: "medium",
-    shape: "square",
+    shape: "circle",
   },
 });
 
 interface ButtonProps extends ButtonPrimitiveProps {
-  variant?: "primary" | "secondary" | "danger" | "warning" | "outline" | "plain";
+  variant?:
+    | "primary"
+    | "secondary"
+    | "danger"
+    | "warning"
+    | "outline"
+    | "plain";
   size?: "medium" | "large" | "square-petite" | "extra-small" | "small";
   shape?: "square" | "circle";
   ref?: React.Ref<HTMLButtonElement>;
@@ -103,7 +109,7 @@ const Button = ({
           variant,
           size,
           shape,
-          className: `ui-button-debug ${className || ''}`,
+          className: `ui-button-debug ${className || ""}`,
         })
       )}
     >
