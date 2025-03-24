@@ -5,9 +5,14 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 import react from "@astrojs/react";
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
+    define: {
+      "process.env": process.env,
+    },
     plugins: [
       tailwindcss(),
       TanStackRouterVite({
@@ -22,4 +27,7 @@ export default defineConfig({
   },
 
   integrations: [react()],
+  // Add output and adapter settings for Cloudflare Pages
+  output: "static",
+  adapter: cloudflare(),
 });
