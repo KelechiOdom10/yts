@@ -1,0 +1,315 @@
+---
+import { IconCheck } from "justd-icons";
+import Layout from "~/layouts/Layout.astro";
+import { buttonStyles, Card } from "~/components/ui";
+import { FAQs } from "~/components/marketing";
+
+// Pricing data
+const pricingPlans = {
+  free: {
+    name: "Free",
+    price: {
+      monthly: "$0",
+      annual: "$0",
+    },
+    description: "Basic access with your own API key",
+    features: [
+      "Unlimited video summaries (with your API key)",
+      "Basic chat with videos",
+      "Standard processing queue",
+      "7-day history retention",
+      "Basic analytics",
+    ],
+    limitations: [
+      "No learning paths",
+      "No priority processing",
+      "No advanced analytics",
+    ],
+    buttonText: "Get Started",
+    buttonVariant: "outline" as const,
+  },
+  pro: {
+    name: "Pro",
+    price: {
+      monthly: "$9",
+      annual: "$90",
+    },
+    description: "Enhanced features for personal learning",
+    features: [
+      "Everything in Free",
+      "Create unlimited learning paths",
+      "Priority processing",
+      "30-day history retention",
+      "Advanced analytics dashboard",
+      "Export summaries (PDF, Markdown)",
+      "Custom video categories",
+      "AI-generated quizzes",
+      "Priority support",
+    ],
+    buttonText: "Upgrade to Pro",
+    buttonVariant: "primary" as const,
+    popular: true,
+  },
+};
+
+// Feature comparison data
+const featureComparison = [
+  { name: "Video Summaries", free: true, pro: true },
+  { name: "Interactive Chat", free: true, pro: true },
+  { name: "Transcript Access", free: true, pro: true },
+  { name: "Learning Paths", free: false, pro: true },
+  { name: "Mind Maps", free: "Basic", pro: "Advanced" },
+  { name: "History Retention", free: "7 days", pro: "30 days" },
+  { name: "Analytics", free: "Basic", pro: "Advanced" },
+  { name: "Priority Processing", free: false, pro: true },
+  { name: "AI-Generated Quizzes", free: false, pro: true },
+  { name: "Export Options", free: false, pro: "PDF, Markdown" },
+  { name: "Support", free: "Email", pro: "Priority" },
+];
+---
+
+<Layout>
+  <!-- Pricing Header Section -->
+  <section class="container mx-auto py-12 md:py-20">
+    <div
+      class="mb-12 flex flex-col items-center gap-6 text-balance text-center"
+    >
+      <h1 class="text-3xl font-semibold lg:max-w-3xl lg:text-5xl leading-tight">
+        Simple, Transparent Pricing
+      </h1>
+      <p class="text-lg text-fg/60 md:max-w-3xl">
+        Use your own OpenAI API key and get started for free. Upgrade for
+        premium features that enhance your learning experience.
+      </p>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="relative mx-auto mb-20 max-w-5xl">
+      <!-- Pricing Toggle -->
+      <div class="mb-8 flex justify-center">
+        <div class="inline-flex items-center rounded-full border p-1 bg-white">
+          <button
+            id="monthly-toggle"
+            class="rounded-full px-4 py-2 text-sm font-medium bg-primary text-primary-fg"
+          >
+            Monthly
+          </button>
+          <button
+            id="annual-toggle"
+            class="rounded-full px-4 py-2 text-sm font-medium"
+          >
+            Annual (Save 17%)
+          </button>
+        </div>
+      </div>
+
+      <!-- Pricing Cards Container -->
+      <div class="grid gap-8 md:grid-cols-2">
+        <!-- Free Plan -->
+        <Card className="overflow-hidden border border-border bg-white">
+          <Card.Header className="pb-0">
+            <div class="mb-4">
+              <h3 class="text-2xl font-bold">{pricingPlans.free.name}</h3>
+              <div class="mt-1 flex items-baseline">
+                <span id="free-price" class="text-4xl font-bold"
+                  >{pricingPlans.free.price.monthly}</span
+                >
+                <span id="free-period" class="ml-1 text-sm text-fg/60"
+                  >/month</span
+                >
+              </div>
+              <p class="mt-2 text-sm text-fg/60">
+                {pricingPlans.free.description}
+              </p>
+            </div>
+          </Card.Header>
+          <Card.Content className="flex-1">
+            <div class="space-y-6">
+              <div>
+                <h4 class="mb-3 text-sm font-medium">What's included:</h4>
+                <ul class="space-y-3">
+                  {
+                    pricingPlans.free.features.map(feature => (
+                      <li class="flex items-start">
+                        <IconCheck className="mr-3 h-5 w-5 flex-shrink-0 text-emerald-500" />
+                        <span class="text-sm">{feature}</span>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+              <div>
+                <h4 class="mb-3 text-sm font-medium">Limitations:</h4>
+                <ul class="space-y-3">
+                  {
+                    pricingPlans.free.limitations.map(limitation => (
+                      <li class="flex items-start">
+                        <span class="mr-3 text-sm">-</span>
+                        <span class="text-sm">{limitation}</span>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </div>
+          </Card.Content>
+          <Card.Footer className="pt-6 border-t">
+            <a
+              href="/signup"
+              class={buttonStyles({
+                variant: pricingPlans.free.buttonVariant,
+                size: "large",
+                shape: "square",
+                className: "w-full",
+              })}
+            >
+              {pricingPlans.free.buttonText}
+            </a>
+          </Card.Footer>
+        </Card>
+
+        <!-- Pro Plan -->
+        <Card className="overflow-hidden border-black bg-white relative">
+          <div
+            class="absolute right-0 top-0 rounded-bl-lg bg-black px-3 py-1 text-xs font-medium text-white"
+          >
+            Most Popular
+          </div>
+          <Card.Header className="pb-0">
+            <div class="mb-4">
+              <h3 class="text-2xl font-bold">{pricingPlans.pro.name}</h3>
+              <div class="mt-1 flex items-baseline">
+                <span id="pro-price" class="text-4xl font-bold"
+                  >{pricingPlans.pro.price.monthly}</span
+                >
+                <span id="pro-period" class="ml-1 text-sm text-fg/60"
+                  >/month</span
+                >
+              </div>
+              <p class="mt-2 text-sm text-fg/60">
+                {pricingPlans.pro.description}
+              </p>
+            </div>
+          </Card.Header>
+          <Card.Content className="flex-1">
+            <div class="space-y-6">
+              <div>
+                <h4 class="mb-3 text-sm font-medium">What's included:</h4>
+                <ul class="space-y-3">
+                  {
+                    pricingPlans.pro.features.map(feature => (
+                      <li class="flex items-start">
+                        <IconCheck className="mr-3 h-5 w-5 flex-shrink-0 text-emerald-500" />
+                        <span class="text-sm">{feature}</span>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </div>
+          </Card.Content>
+          <Card.Footer className="pt-6 border-t">
+            <a
+              href="/pro"
+              class={buttonStyles({
+                variant: pricingPlans.pro.buttonVariant,
+                size: "large",
+                shape: "square",
+                className: "w-full",
+              })}
+            >
+              {pricingPlans.pro.buttonText}
+            </a>
+          </Card.Footer>
+        </Card>
+      </div>
+    </div>
+
+    <!-- Feature Comparison Table -->
+    <div class="mx-auto max-w-5xl overflow-hidden rounded-lg border mb-24">
+      <div class="bg-white py-4">
+        <h2 class="text-center text-xl font-semibold">Free vs Pro Features</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full bg-white">
+          <thead>
+            <tr class="border-b">
+              <th class="w-1/3 px-6 py-4 text-left font-medium">Feature</th>
+              <th class="w-1/3 px-6 py-4 text-center font-medium">Free</th>
+              <th class="w-1/3 px-6 py-4 text-center font-medium">Pro</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              featureComparison.map(feature => (
+                <tr class="border-b last:border-b-0">
+                  <td class="px-6 py-4 font-medium">{feature.name}</td>
+                  <td class="px-6 py-4 text-center">
+                    {typeof feature.free === "boolean" ? (
+                      feature.free ? (
+                        <IconCheck className="mx-auto h-5 w-5 text-emerald-500" />
+                      ) : (
+                        <span class="text-sm">—</span>
+                      )
+                    ) : (
+                      <span class="text-sm">{feature.free}</span>
+                    )}
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    {typeof feature.pro === "boolean" ? (
+                      feature.pro ? (
+                        <IconCheck className="mx-auto h-5 w-5 text-emerald-500" />
+                      ) : (
+                        <span class="text-sm">—</span>
+                      )
+                    ) : (
+                      <span class="text-sm">{feature.pro}</span>
+                    )}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <FAQs />
+</Layout>
+
+<script>
+  // Toggle between monthly and annual pricing
+  const monthlyToggle = document.getElementById("monthly-toggle");
+  const annualToggle = document.getElementById("annual-toggle");
+  const freePrice = document.getElementById("free-price");
+  const freePeriod = document.getElementById("free-period");
+  const proPrice = document.getElementById("pro-price");
+  const proPeriod = document.getElementById("pro-period");
+
+  if (
+    monthlyToggle &&
+    annualToggle &&
+    freePrice &&
+    freePeriod &&
+    proPrice &&
+    proPeriod
+  ) {
+    monthlyToggle.addEventListener("click", () => {
+      monthlyToggle.classList.add("bg-primary", "text-primary-fg");
+      annualToggle.classList.remove("bg-primary", "text-primary-fg");
+      freePrice.textContent = "$0";
+      freePeriod.textContent = "/month";
+      proPrice.textContent = "$9";
+      proPeriod.textContent = "/month";
+    });
+
+    annualToggle.addEventListener("click", () => {
+      annualToggle.classList.add("bg-primary", "text-primary-fg");
+      monthlyToggle.classList.remove("bg-primary", "text-primary-fg");
+      freePrice.textContent = "$0";
+      freePeriod.textContent = "/year";
+      proPrice.textContent = "$90";
+      proPeriod.textContent = "/year";
+    });
+  }
+</script>
