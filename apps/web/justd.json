@@ -1,6 +1,6 @@
 {
   "$schema": "https://getjustd.com/schema.json",
-  "ui": "src/components",
+  "ui": "src/components/ui",
   "utils": "src/utils",
   "gray": "zinc",
   "css": "src/styles/global.css",
