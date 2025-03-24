@@ -1,0 +1,40 @@
+---
+import { Image } from "astro:assets";
+import notfoundImage from "./assets/404.png";
+import { buttonStyles } from "~/components/ui/button";
+
+interface Props {
+  title?: string;
+  message?: string;
+}
+
+const {
+  title = "Page Not Found",
+  message = "Sorry, the page you are looking for doesn't exist or has been moved.",
+} = Astro.props;
+---
+
+<div class="flex flex-col items-center justify-center w-full border-b">
+  <div class="max-w-md text-center px-4 pb-24">
+    <Image
+      src={notfoundImage}
+      alt="404 Not Found"
+      width={notfoundImage.width}
+      height={notfoundImage.height}
+      class="mx-auto w-64 md:w-80 h-60 object-cover"
+    />
+    <h1 class="mb-4 text-3xl font-bold text-fg md:text-4xl">{title}</h1>
+    <p class="mb-8 text-lg text-fg/60">{message}</p>
+    <div
+      class="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 justify-center"
+    >
+      <a href="/" class={buttonStyles({ variant: "primary" })}> Go Home </a>
+      <a
+        href="mailto:contact@yts.ai"
+        class={buttonStyles({ variant: "outline" })}
+      >
+        Contact Support
+      </a>
+    </div>
+  </div>
+</div>
