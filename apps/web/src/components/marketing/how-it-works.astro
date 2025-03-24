@@ -50,8 +50,8 @@ const steps = [
                 "w-12 h-12 flex items-center justify-center rounded-full  mb-4",
                 {
                   "bg-light-pink/40 text-pink-700": step.icon === "video",
-                  "bg-light-blue/40 text-blue-600": step.icon === "sparkles",
-                  "bg-primary/10 text-primary": step.icon === "brain",
+                  "bg-amber-100/60 text-amber-700": step.icon === "sparkles",
+                  "bg-light-blue/40 text-cyan-600": step.icon === "brain",
                 }
               )}
             >
@@ -108,8 +108,8 @@ const steps = [
             <div
               class={cn("mt-4 text-2xl font-bold", {
                 "text-pink-700": step.icon === "video",
-                "text-blue-700": step.icon === "sparkles",
-                "text-primary": step.icon === "brain",
+                "text-amber-700": step.icon === "sparkles",
+                "text-cyan-600": step.icon === "brain",
               })}
             >
               {step.id}
