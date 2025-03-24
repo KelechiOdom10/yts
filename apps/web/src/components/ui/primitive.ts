@@ -3,7 +3,7 @@ import { composeRenderProps } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 
-const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
+export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
 function composeTailwindRenderProps<T>(
   className: string | ((v: T) => string) | undefined,
