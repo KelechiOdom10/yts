@@ -16,6 +16,8 @@
   /* Recommended font is: Geist Mono */
   /*--font-mono: var(--font-geist), 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace';*/
 
+  --font-sans: "Geist Sans", sans-serif;
+
   --color-border: var(--border);
   --color-input: var(--input);
 
@@ -54,6 +56,11 @@
   --color-sidebar: var(--sidebar);
   --color-sidebar-fg: var(--sidebar-fg);
 
+  --color-light-yellow: var(--light-yellow);
+  --color-light-blue: var(--light-blue);
+  --color-light-pink: var(--light-pink);
+  --color-light-purple: var(--light-purple);
+
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -63,48 +70,72 @@
 
 @layer base {
   :root {
-    --bg: oklch(1 0 0);
-    --fg: oklch(0.141 0.005 285.823);
+    /* Subtle beige/off-white background */
+    --bg: oklch(0.98 0.01 92);
+    --fg: oklch(0.15 0.03 70);
 
-    --primary: oklch(0.585 0.233 277.117);
+    /* Keep primary indigo */
+    --primary: oklch(0.555 0.233 277.117);
     --primary-fg: oklch(1 0 0);
 
-    --secondary: oklch(0.92 0.004 286.32);
-    --secondary-fg: oklch(0.141 0.005 285.823);
+    /* Secondary as variation of black in light mode */
+    --secondary: oklch(0.15 0.005 280);
+    --secondary-fg: oklch(0.98 0.01 80);
 
-    --overlay: oklch(1 0 0);
-    --overlay-fg: oklch(0.141 0.005 285.823);
+    /* Overlay color */
+    --overlay: oklch(0.98 0.01 80);
+    --overlay-fg: oklch(0.15 0.03 70);
 
     --accent: oklch(0.585 0.233 277.117);
     --accent-fg: oklch(1 0 0);
 
-    --muted: oklch(0.967 0.001 286.375);
-    --muted-fg: oklch(0.552 0.016 285.938);
+    /* Subtle beige muted */
+    --muted: oklch(0.96 0.01 80);
+    --muted-fg: oklch(0.45 0.02 70);
 
+    /* Keep success green */
     --success: oklch(0.596 0.145 163.225);
     --success-fg: oklch(1 0 0);
 
+    /* Warning color */
     --warning: oklch(0.828 0.189 84.429);
     --warning-fg: oklch(0.279 0.077 45.635);
 
+    /* Keep danger/alert red */
     --danger: oklch(0.577 0.245 27.325);
     --danger-fg: oklch(0.971 0.013 17.38);
 
-    --border: oklch(0.911 0.006 286.286);
-    --input: oklch(0.871 0.006 286.286);
+    /* Subtle beige borders */
+    --border: oklch(0.9 0.02 80);
+    --input: oklch(0.87 0.02 80);
     --ring: oklch(0.511 0.262 276.966);
 
-    --navbar: oklch(0.967 0.001 286.375);
-    --navbar-fg: oklch(0.141 0.005 285.823);
+    /* Subtle beige navbar */
+    --navbar: oklch(0.96 0.01 80);
+    --navbar-fg: oklch(0.15 0.03 70);
 
-    --sidebar: oklch(0.967 0.001 286.375);
-    --sidebar-fg: oklch(0.141 0.005 285.823);
+    /* Subtle beige sidebar */
+    --sidebar: oklch(0.95 0.01 80);
+    --sidebar-fg: oklch(0.15 0.03 70);
 
-    --chart-1: oklch(0.511 0.262 276.966);
+    /* Add one off colors */
+    --light-blue: oklch(0.8 0.06 240); /* Light blue for mascot & buttons */
+    --light-pink: oklch(0.88 0.07 20); /* Light pink panel background */
+    --light-yellow: oklch(0.92 0.07 90); /* Light yellow panel background */
+    --light-purple: oklch(0.7 0.15 300); /* Purple for tip button */
+
+    /* --chart-1: oklch(0.511 0.262 276.966);
     --chart-2: oklch(0.673 0.182 276.935);
     --chart-3: oklch(0.785 0.115 274.713);
     --chart-4: oklch(0.87 0.065 274.039);
-    --chart-5: oklch(0.93 0.034 272.788);
+    --chart-5: oklch(0.93 0.034 272.788); */
+
+    /* Chart colors - add one-off colors */
+    --chart-1: oklch(0.511 0.262 276.966); /* Indigo */
+    --chart-2: oklch(0.8 0.06 240); /* Light blue */
+    --chart-3: oklch(0.88 0.07 20); /* Light pink */
+    --chart-4: oklch(0.92 0.07 90); /* Light yellow */
+    --chart-5: oklch(0.7 0.15 300); /* Purple */
 
     --radius-lg: 0.5rem;
     --radius-xs: calc(var(--radius-lg) * 0.5);
@@ -117,48 +148,73 @@
   }
 
   .dark {
-    --bg: oklch(0.091 0.005 285.823);
-    --fg: oklch(0.985 0 0);
+    /* Subtle dark theme */
+    --bg: oklch(0.2 0.03 70);
+    --fg: oklch(0.98 0.005 80);
 
+    /* Keep primary indigo */
     --primary: oklch(0.585 0.233 277.117);
     --primary-fg: oklch(1 0 0);
 
-    --secondary: oklch(0.244 0.006 286.033);
-    --secondary-fg: oklch(0.985 0 0);
+    /* Secondary as variation of white in dark mode */
+    --secondary: oklch(0.98 0.005 280);
+    --secondary-fg: oklch(0.2 0.03 70);
 
     --accent: oklch(0.585 0.233 277.117);
     --accent-fg: oklch(1 0 0);
 
-    --muted: oklch(0.21 0.006 285.885);
-    --muted-fg: oklch(0.705 0.015 286.067);
+    /* Subtle dark muted */
+    --muted: oklch(0.28 0.03 70);
+    --muted-fg: oklch(0.85 0.02 80);
 
-    --overlay: oklch(0.17 0.006 285.885);
-    --overlay-fg: oklch(0.985 0 0);
+    /* Subtle dark overlay */
+    --overlay: oklch(0.25 0.03 70);
+    --overlay-fg: oklch(0.98 0.005 80);
 
+    /* Keep success */
     --success: oklch(0.596 0.145 163.225);
     --success-fg: oklch(1 0 0);
 
+    /* Warning */
     --warning: oklch(0.828 0.189 84.429);
     --warning-fg: oklch(0.279 0.077 45.635);
 
+    /* Keep danger/alert */
     --danger: oklch(0.577 0.245 27.325);
     --danger-fg: oklch(0.971 0.013 17.38);
 
-    --border: oklch(0.27 0.013 285.805);
-    --input: oklch(0.32 0.013 285.805);
+    /* Subtle dark borders */
+    --border: oklch(0.35 0.03 70);
+    --input: oklch(0.4 0.03 70);
     --ring: oklch(0.511 0.262 276.966);
 
-    --navbar: oklch(0.17 0.006 285.885);
-    --navbar-fg: oklch(0.985 0 0);
+    /* Subtle dark navbar */
+    --navbar: oklch(0.25 0.03 70);
+    --navbar-fg: oklch(0.98 0.005 80);
 
-    --sidebar: oklch(0.16 0.006 285.885);
-    --sidebar-fg: oklch(0.985 0 0);
+    /* Subtle dark sidebar */
+    --sidebar: oklch(0.23 0.03 70);
+    --sidebar-fg: oklch(0.98 0.005 80);
 
-    --chart-1: oklch(0.457 0.24 277.023);
+    /* Add one off colors for dark mode - slightly adjusted for dark background */
+    --light-blue: oklch(0.75 0.08 240); /* Light blue for mascot & buttons */
+    --light-pink: oklch(0.8 0.09 20); /* Light pink panel background */
+    --light-yellow: oklch(0.85 0.09 90); /* Light yellow panel background */
+    --light-purple: oklch(0.65 0.18 300); /* Purple for tip button */
+
+    /* Chart colors - add the one-off colors */
+    --chart-1: oklch(0.511 0.262 276.966); /* Indigo */
+    --chart-2: oklch(0.75 0.08 240); /* Light blue */
+    --chart-3: oklch(0.8 0.09 20); /* Light pink */
+    --chart-4: oklch(0.85 0.09 90); /* Light yellow */
+    --chart-5: oklch(0.65 0.18 300); /* Purple */
+
+    /* Chart colors - keep consistent with light mode */
+    /* --chart-1: oklch(0.457 0.24 277.023);
     --chart-2: oklch(0.585 0.233 277.117);
     --chart-3: oklch(0.673 0.182 276.935);
     --chart-4: oklch(0.785 0.115 274.713);
-    --chart-5: oklch(0.87 0.065 274.039);
+    --chart-5: oklch(0.87 0.065 274.039); */
   }
 }
 
