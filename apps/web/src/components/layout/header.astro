@@ -1,98 +1,73 @@
 ---
+import { Button } from "../ui";
+import AuthMenu from "./auth-menu.astro";
+import { IconAlignmentCenter } from "justd-icons";
+
 // Get the current path to highlight active navigation items
 const currentPath = Astro.url.pathname;
 
-// Check if user is logged in
-const isLoggedIn = Astro.cookies.has("token");
-
 // Navigation items for the header
 const navItems = [
-  { name: "Features", href: "/features" },
+  { name: "Features", href: "/#features" },
   { name: "Pricing", href: "/pricing" },
-  { name: "Blog", href: "/blog" },
-  { name: "About", href: "/about" },
+  { name: "Explore", href: "/explore" },
+  { name: "Contact", href: "mailto:contact@yts.ai" },
 ];
 ---
 
-<header class="bg-white border-b border-gray-200">
-  <div class="container mx-auto px-4">
-    <div class="flex justify-between h-16">
-      <!-- Logo and main navigation -->
-      <div class="flex">
-        <div class="flex-shrink-0 flex items-center">
-          <a href="/">
-            <img class="h-8 w-auto" src="/logo.svg" alt="Summarizer" />
-          </a>
-        </div>
-        <nav class="hidden md:ml-6 md:flex md:space-x-6">
-          {navItems.map((item) => (
+<header
+  class="fixed top-4 left-0 right-0 max-w-7xl mx-4 xl:mx-auto z-50 rounded-sm md:rounded-full shadow-md bg-white/70 pr-3 py-2.5 pl-5 border backdrop-blur-2xl"
+>
+  <div class="flex justify-between">
+    <div class="flex">
+      <div class="flex-shrink-0 flex items-center">
+        <a href="/" class="flex items-center gap-2 font-semibold text-lg">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="h-6 w-6 text-red-600"
+          >
+            <path
+              d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"
+            ></path>
+          </svg>
+          <span>VideoInsight</span>
+        </a>
+      </div>
+      <nav class="hidden md:ml-8 md:flex md:space-x-6">
+        {
+          navItems.map(item => (
             <a
               href={item.href}
-              class={`inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 ${
+              class={`inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 transition-colors ${
                 currentPath === item.href
-                  ? "border-primary-500 text-gray-900"
-                  : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  ? "border-primary text-fg"
+                  : "border-transparent text-fg hover:border-primary hover:text-fg/90"
               }`}
             >
               {item.name}
             </a>
-          ))}
-        </nav>
-      </div>
+          ))
+        }
+      </nav>
+    </div>
 
-      <!-- Authentication buttons -->
-      <div class="hidden md:ml-6 md:flex md:items-center md:space-x-4">
-        {isLoggedIn ? (
-          
-          <a
-            href="/app/dashboard"
-            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
-          >
-            Dashboard
-          </a>
-        ) : (
-          <>
-            <a
-              href="/login"
-              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary-600 bg-white hover:bg-gray-50"
-            >
-              Log in
-            </a>
-            <a
-              href="/signup"
-              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
-            >
-              Sign up
-            </a>
-          </>
-        )}
-      </div>
-
+    <!-- User menu and mobile menu button -->
+    <div class="flex items-center gap-2">
+      <AuthMenu server:defer />
       <!-- Mobile menu button -->
       <div class="flex items-center md:hidden">
-        <button
-          type="button"
-          class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+        <Button
+          aria-label="Open main menu"
+          className="mobile-menu-button"
           aria-expanded="false"
+          size="square-petite"
+          shape="square"
+          variant="outline"
         >
-          <span class="sr-only">Open main menu</span>
-          <!-- Heroicon name: menu -->
-          <svg
-            class="h-6 w-6"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
+          <IconAlignmentCenter />
+        </Button>
       </div>
     </div>
   </div>
@@ -100,63 +75,54 @@ const navItems = [
   <!-- Mobile menu, show/hide based on menu state -->
   <div class="hidden mobile-menu md:hidden">
     <div class="pt-2 pb-3 space-y-1">
-      {navItems.map((item) => (
-        <a
-          href={item.href}
-          class={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
-            currentPath === item.href
-              ? "bg-primary-50 border-primary-500 text-primary-700"
-              : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
-          }`}
-        >
-          {item.name}
-        </a>
-      ))}
-    </div>
-    <div class="pt-4 pb-3 border-t border-gray-200">
-      <div class="space-y-1">
-        {isLoggedIn ? (
+      {
+        navItems.map(item => (
           <a
-            href="/app/dashboard"
-            class="block pl-3 pr-4 py-2 border-l-4 border-primary-500 text-base font-medium text-primary-700 bg-primary-50"
+            href={item.href}
+            class={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
+              currentPath === item.href
+                ? "bg-primary-50 border-primary-500 text-primary-700"
+                : "border-transparent text-fg hover:bg-primary/10 hover:border-primary"
+            }`}
           >
-            Dashboard
+            {item.name}
           </a>
-        ) : (
-          <>
-            <a
-              href="/login"
-                 class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
-            >
-              Log in
-            </a>
-            <a
-              href="/signup"
-              class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
-            >
-              Sign up
-            </a>
-          </>
-        )}
-      </div>
+        ))
+      }
     </div>
   </div>
 </header>
 
 <script>
-  // Simple mobile menu toggle
-  document.addEventListener('DOMContentLoaded', () => {
-    const button = document.querySelector('.mobile-menu-button');
-    const menu = document.querySelector('.mobile-menu');
-    
+  // Mobile menu toggle
+  document.addEventListener("DOMContentLoaded", () => {
+    const button = document.querySelector(".mobile-menu-button");
+    const menu = document.querySelector(".mobile-menu");
+
     if (button && menu) {
-      button.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
-        
+      button.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+
         // Update aria-expanded
-        const expanded = button.getAttribute('aria-expanded') === 'true';
-        button.setAttribute('aria-expanded', (!expanded).toString());
+        const expanded = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-expanded", (!expanded).toString());
+      });
+
+      // Close the mobile menu when clicking outside
+      document.addEventListener("click", event => {
+        if (
+          button &&
+          !button.contains(event.target as Node) &&
+          menu &&
+          !menu.contains(event.target as Node)
+        ) {
+          button.setAttribute("aria-expanded", "false");
+          menu.classList.add("hidden");
+        }
       });
     }
   });
 </script>
+
+<!-- Spacer to prevent content from being hidden under the fixed header -->
+<div class="h-16"></div>
