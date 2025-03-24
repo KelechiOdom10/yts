@@ -1,8 +1,17 @@
 ---
 import { App } from "~/app/main";
 import Layout from "~/layouts/Layout.astro";
+import { auth } from "@yts/api";
 
 export const prerender = false;
+
+const session = await auth.api.getSession({
+  headers: Astro.request.headers,
+});
+
+if (Astro.url.pathname.startsWith("/app") && !session) {
+  return Astro.redirect("/");
+}
 ---
 
 <Layout>
