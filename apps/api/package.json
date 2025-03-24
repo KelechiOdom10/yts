@@ -6,6 +6,7 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
+    "@elysiajs/cors": "^1.2.0",
     "@libsql/client": "^0.14.0",
     "@yts/shared": "workspace:*",
     "better-auth": "^1.2.4",
