@@ -38,7 +38,9 @@ const { feature1, feature2, feature3, feature4 } = features;
 
 <section id="features" class="container mx-auto py-32">
   <div class="mb-12 flex flex-col items-center gap-6 text-balance text-center">
-    <h2 class="text-3xl font-semibold lg:max-w-3xl lg:text-5xl leading-tight">
+    <h2
+      class="text-3xl font-semibold lg:max-w-3xl lg:text-5xl leading-tight font-header"
+    >
       Powerful Features for Enhanced Learning
     </h2>
     <p class="text-lg text-fg/60 md:max-w-3xl">
@@ -55,7 +57,7 @@ const { feature1, feature2, feature3, feature4 } = features;
         <div
           class="flex flex-col justify-between border-b border-solid border-muted2 p-10 md:w-3/5 md:border-b-0 md:border-r"
         >
-          <h2 class="text-xl font-semibold">{feature1.title}</h2>
+          <h2 class="text-xl font-semibold font-header">{feature1.title}</h2>
           <p class="text-fg/70">{feature1.description}</p>
           <Image
             src={feature1.image}
@@ -64,7 +66,7 @@ const { feature1, feature2, feature3, feature4 } = features;
           />
         </div>
         <div class="flex flex-col justify-between p-10 md:w-2/5">
-          <h2 class="text-xl font-semibold">{feature2.title}</h2>
+          <h2 class="text-xl font-semibold font-header">{feature2.title}</h2>
           <p class="text-fg/70">{feature2.description}</p>
           <Image
             src={feature2.image}
@@ -79,7 +81,7 @@ const { feature1, feature2, feature3, feature4 } = features;
         <div
           class="flex flex-col justify-between border-b border-solid border-muted2 p-10 md:w-2/5 md:border-b-0 md:border-r"
         >
-          <h2 class="text-xl font-semibold">{feature3.title}</h2>
+          <h2 class="text-xl font-semibold font-header">{feature3.title}</h2>
           <p class="text-fg/70">{feature3.description}</p>
           <Image
             src={feature3.image}
@@ -89,7 +91,7 @@ const { feature1, feature2, feature3, feature4 } = features;
         </div>
         <div class="flex flex-col gap-2 justify-between p-10 md:w-3/5">
           <Badge intent="info" className="w-fit">Coming Soon</Badge>
-          <h2 class="text-xl font-semibold">{feature4.title}</h2>
+          <h2 class="text-xl font-semibold font-header">{feature4.title}</h2>
           <p class="text-fg/70">{feature4.description}</p>
           <Image
             src={feature4.image}
