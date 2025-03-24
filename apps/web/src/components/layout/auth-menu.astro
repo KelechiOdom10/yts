@@ -1,0 +1,38 @@
+---
+import { buttonStyles } from "~/components/ui/button";
+import { UserMenu } from "./user-menu";
+import { auth } from "@yts/api";
+
+const session = await auth.api.getSession({
+  headers: Astro.request.headers,
+});
+
+const user = session?.user;
+
+const isLoggedIn = !!user;
+---
+
+{
+  isLoggedIn ? (
+    <UserMenu user={user} client:load />
+  ) : (
+    <div class="flex items-center space-x-4">
+      <a
+        href="/login"
+        class={buttonStyles({
+          variant: "outline",
+          size: "small",
+          class: "hidden md:inline-flex",
+        })}
+      >
+        Log in
+      </a>
+      <a
+        href="/signup"
+        class={buttonStyles({ variant: "primary", size: "small" })}
+      >
+        Sign up
+      </a>
+    </div>
+  )
+}
