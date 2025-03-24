@@ -1,0 +1,132 @@
+---
+const faqs = [
+  {
+    question: "What is VideoInsight?",
+    answer:
+      "VideoInsight is an AI-powered platform that transforms YouTube videos into interactive learning experiences. It provides summaries, key points, interactive chat, and personalized learning paths to help you extract maximum value from video content.",
+  },
+  {
+    question: "Is there a free trial?",
+    answer:
+      "Yes! You can use VideoInsight for free with your own OpenAI API key. The free plan includes unlimited video summaries, basic chat functionality, and transcript access. Upgrade to Pro for additional features like learning paths and priority processing.",
+  },
+  {
+    question: "Why do I need to provide my own API key?",
+    answer:
+      "Using your own OpenAI API key gives you direct control over your API usage and costs. You only pay OpenAI for what you use, and we don't mark up those costs.",
+  },
+  {
+    question: "What are learning paths?",
+    answer:
+      "Learning paths allow you to organize videos into structured courses or topics, creating a curated learning experience with custom notes and progression tracking.",
+  },
+  {
+    question: "What is priority processing?",
+    answer:
+      "Priority processing places your video summarization requests at the front of the queue, ensuring faster results during peak usage times.",
+  },
+  {
+    question: "Can I cancel my subscription anytime?",
+    answer:
+      "Yes, you can cancel your subscription at any time. For monthly plans, you'll have access until the end of your billing period. For annual plans, you'll have access for the full year.",
+  },
+  {
+    question: "Is my data secure?",
+    answer:
+      "Yes, we encrypt your API keys and personal data. We never store video content or transcripts beyond the processing period, and we don't share your data with third parties.",
+  },
+];
+---
+
+<section class="py-16 bg-white w-full">
+  <div class="container mx-auto px-4 md:px-6">
+    <div class="mx-auto max-w-3xl text-center mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Frequently Asked Questions</h2>
+      <p class="text-fg/60 text-lg">
+        Have questions about VideoInsight? We've got answers.
+      </p>
+    </div>
+
+    <div class="mx-auto max-w-3xl">
+      <div class="space-y-4">
+        {
+          faqs.map((faq, index) => (
+            <div class="border-b border-border pb-4" data-faq>
+              <button
+                class="flex w-full items-center justify-between py-2 text-left font-medium text-fg focus:outline-none"
+                aria-expanded="false"
+                aria-controls={`faq-${index}`}
+                data-faq-toggle
+              >
+                <span>{faq.question}</span>
+                <svg
+                  class="h-5 w-5 transform text-fg transition-transform duration-200"
+                  data-faq-icon
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg>
+              </button>
+              <div
+                id={`faq-${index}`}
+                class="mt-2 hidden pr-12 text-fg/70"
+                data-faq-content
+              >
+                <p>{faq.answer}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-fg/60">
+          Still have questions? <a
+            href="mailto:contact@yts.ai"
+            class="text-primary font-medium hover:underline">Contact us</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Initialize FAQ accordions
+  document.addEventListener("DOMContentLoaded", () => {
+    const faqItems = document.querySelectorAll("[data-faq]");
+
+    faqItems.forEach(faq => {
+      const toggle = faq.querySelector("[data-faq-toggle]");
+      const content = faq.querySelector("[data-faq-content]");
+      const icon = faq.querySelector("[data-faq-icon]");
+
+      if (toggle && content && icon) {
+        toggle.addEventListener("click", () => {
+          const expanded = toggle.getAttribute("aria-expanded") === "true";
+
+          // Update the toggle state
+          toggle.setAttribute("aria-expanded", (!expanded).toString());
+
+          // Toggle the content visibility
+          if (expanded) {
+            content.classList.add("hidden");
+            icon.innerHTML =
+              '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>';
+          } else {
+            content.classList.remove("hidden");
+            icon.innerHTML =
+              '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"></path>';
+          }
+        });
+      }
+    });
+  });
+</script>
