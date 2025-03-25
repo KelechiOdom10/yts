@@ -1,19 +1,37 @@
 import { Button, Card, Form, ShowMore, TextField } from "../ui";
 import { SocialLoginButton } from "./social-login-button";
 import { authClient } from "~/lib/auth-client";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export const SignupForm = () => {
+  const urlParams = new URLSearchParams(window?.location.search);
+  const redirectURL = urlParams.get("next") || "/app";
+  const [isPending, setIsPending] = useState(false);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get("email") as string;
-    const name = formData.get("name") as string;
-
     if (!email || !name) return;
 
     authClient.signIn.magicLink({
       email,
-      //   callbackURL: searchParams.get("redirectURL") || "/app",
+      callbackURL: redirectURL,
+      fetchOptions: {
+        onResponse: () => {
+          setIsPending(false);
+        },
+        onRequest: () => {
+          setIsPending(true);
+        },
+        onSuccess: () => {
+          window.location.href = `/verify?email=${email}`;
+        },
+        onError: ({ error }) => {
+          toast.error(error.message);
+        },
+      },
     });
   };
 
@@ -34,15 +52,25 @@ export const SignupForm = () => {
             isRequired
             label="Name"
             placeholder="Enter your name"
+            value={name}
+            onChange={setName}
           />
           <TextField
             type="email"
             isRequired
             label="Email"
             placeholder="Enter your email"
+            value={email}
+            onChange={setEmail}
+            isPending={isPending}
           />
 
-          <Button type="submit" className="w-full" shape="square">
+          <Button
+            type="submit"
+            className="w-full"
+            shape="square"
+            isPending={isPending}
+          >
             Send magic link
           </Button>
         </Form>

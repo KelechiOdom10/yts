@@ -1,17 +1,36 @@
+import { useState } from "react";
+import { authClient } from "~/lib/auth-client";
 import { Button, Card, Form, ShowMore, TextField } from "../ui";
 import { SocialLoginButton } from "./social-login-button";
-import { authClient } from "~/lib/auth-client";
+import { toast } from "sonner";
 
 export const LoginForm = () => {
+  const urlParams = new URLSearchParams(window?.location.search);
+  const redirectURL = urlParams.get("next") || "/app";
+  const [email, setEmail] = useState("");
+  const [isPending, setIsPending] = useState(false);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get("email") as string;
     if (!email) return;
 
     authClient.signIn.magicLink({
       email,
-      //   callbackURL: searchParams.get("redirectURL") || "/app",
+      callbackURL: redirectURL,
+      fetchOptions: {
+        onResponse: () => {
+          setIsPending(false);
+        },
+        onRequest: () => {
+          setIsPending(true);
+        },
+        onSuccess: () => {
+          window.location.href = `/verify?email=${email}`;
+        },
+        onError: ({ error }) => {
+          toast.error(error.message);
+        },
+      },
     });
   };
 
@@ -32,8 +51,16 @@ export const LoginForm = () => {
             isRequired
             label="Email"
             placeholder="Enter your email"
+            isPending={isPending}
+            value={email}
+            onChange={setEmail}
           />
-          <Button type="submit" className="w-full" shape="square">
+          <Button
+            type="submit"
+            className="w-full"
+            shape="square"
+            isPending={isPending}
+          >
             Send magic link
           </Button>
         </Form>
