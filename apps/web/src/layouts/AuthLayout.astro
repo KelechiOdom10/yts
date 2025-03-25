@@ -21,7 +21,7 @@ const { title, description, image } = Astro.props;
         <Logo />
       </div>
       <slot />
-      <Toast client:load />
+      <Toast client:load theme="light" />
     </div>
   </body>
 </html>
