@@ -4,16 +4,16 @@ import tailwindcss from "@tailwindcss/vite";
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 import react from "@astrojs/react";
+
 import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "static",
-  adapter: vercel(),
-  integrations: [react()],
   vite: {
     plugins: [
+      // @ts-ignore
       tailwindcss(),
+      // @ts-ignore
       TanStackRouterVite({
         target: "react",
         autoCodeSplitting: true,
@@ -24,4 +24,8 @@ export default defineConfig({
       }),
     ],
   },
+
+  integrations: [react()],
+  output: "static",
+  adapter: vercel(),
 });
