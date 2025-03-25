@@ -1,5 +1,7 @@
 ---
 import { IconBrandLinkedin, IconBrandGithub } from "justd-icons";
+import { siteConfig } from "@yts/shared";
+
 import Logo from "./logo.astro";
 
 // Footer navigation items
@@ -16,7 +18,7 @@ const footerNavItems = [
     title: "Company",
     items: [
       { name: "Home", href: "/" },
-      { name: "Contact", href: "mailto:contact@yts.ai" },
+      { name: "Contact", href: `mailto:${siteConfig.email}` },
       { name: "Privacy", href: "/privacy" },
       { name: "Terms", href: "/terms" },
     ],

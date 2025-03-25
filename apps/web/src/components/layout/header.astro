@@ -1,7 +1,9 @@
 ---
+import { IconAlignmentCenter } from "justd-icons";
+import { siteConfig } from "@yts/shared";
+
 import { Button } from "../ui";
 import AuthMenu from "./auth-menu.astro";
-import { IconAlignmentCenter } from "justd-icons";
 import { Skeleton } from "../ui";
 import Logo from "./logo.astro";
 
@@ -13,7 +15,7 @@ const navItems = [
   { name: "Features", href: "/#features" },
   { name: "Pricing", href: "/pricing" },
   { name: "Explore", href: "/explore" },
-  { name: "Contact", href: "mailto:contact@yts.ai" },
+  { name: "Contact", href: `mailto:${siteConfig.email}` },
 ];
 ---
 
