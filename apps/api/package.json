@@ -3,21 +3,27 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/index.ts",
+    "email": "email dev --dir src/emails"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.2.0",
     "@libsql/client": "^0.14.0",
+    "@plunk/node": "^3.0.3",
+    "@react-email/components": "^0.0.34",
     "@yts/shared": "workspace:*",
     "better-auth": "^1.2.4",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.40.0",
-    "elysia": "latest"
+    "elysia": "latest",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@yts/tsconfig": "workspace:*",
     "bun-types": "latest",
     "drizzle-kit": "^0.30.5",
+    "react-email": "^3.0.7",
     "tsx": "^4.19.3"
   },
   "main": "src/index.ts",
