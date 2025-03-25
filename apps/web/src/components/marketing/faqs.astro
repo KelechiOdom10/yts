@@ -103,34 +103,69 @@ const faqs = [
 </section>
 
 <script>
-  // Initialize FAQ accordions
-  document.addEventListener("DOMContentLoaded", () => {
+  const toggleFAQ = (
+    toggle: HTMLElement,
+    content: HTMLElement,
+    icon: SVGElement
+  ) => {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    const newState = !expanded;
+
+    // Update the toggle state
+    toggle.setAttribute("aria-expanded", newState.toString());
+
+    // Toggle the content visibility with a small delay to ensure DOM updates
+    requestAnimationFrame(() => {
+      if (!newState) {
+        content.classList.add("hidden");
+        icon.innerHTML =
+          '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>';
+      } else {
+        content.classList.remove("hidden");
+        icon.innerHTML =
+          '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"></path>';
+      }
+    });
+  };
+
+  // Initialize FAQ accordions when the DOM is ready
+  const initFAQs = () => {
     const faqItems = document.querySelectorAll("[data-faq]");
 
     faqItems.forEach(faq => {
-      const toggle = faq.querySelector("[data-faq-toggle]");
+      const toggle = faq.querySelector("[data-faq-toggle]") as HTMLElement;
       const content = faq.querySelector("[data-faq-content]");
       const icon = faq.querySelector("[data-faq-icon]");
 
       if (toggle && content && icon) {
-        toggle.addEventListener("click", () => {
-          const expanded = toggle.getAttribute("aria-expanded") === "true";
+        // Handle both click and keypress (Enter/Space) events
+        toggle.addEventListener("click", e => {
+          e.preventDefault();
+          toggleFAQ(
+            toggle as HTMLElement,
+            content as HTMLElement,
+            icon as SVGElement
+          );
+        });
 
-          // Update the toggle state
-          toggle.setAttribute("aria-expanded", (!expanded).toString());
-
-          // Toggle the content visibility
-          if (expanded) {
-            content.classList.add("hidden");
-            icon.innerHTML =
-              '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>';
-          } else {
-            content.classList.remove("hidden");
-            icon.innerHTML =
-              '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"></path>';
+        toggle.addEventListener("keydown", (e: KeyboardEvent) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleFAQ(
+              toggle as HTMLElement,
+              content as HTMLElement,
+              icon as SVGElement
+            );
           }
         });
       }
     });
-  });
+  };
+
+  // Run initialization when the DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initFAQs);
+  } else {
+    initFAQs();
+  }
 </script>
