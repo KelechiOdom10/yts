@@ -9,12 +9,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.3.0",
     "@astrojs/react": "^4.2.1",
     "@astrojs/vercel": "^8.1.3",
     "@fontsource/geist-sans": "^5.2.5",
     "@fontsource/ibm-plex-sans-arabic": "^5.2.5",
     "@fontsource/newsreader": "^5.2.6",
+    "@pheralb/toast": "^1.0.0",
     "@tailwindcss/vite": "^4.0.14",
     "@tanstack/react-router": "^1.114.17",
     "@types/react": "^19.0.10",
@@ -27,7 +27,6 @@
     "react": "^19.0.0",
     "react-aria-components": "^1.7.1",
     "react-dom": "^19.0.0",
-    "sonner": "^2.0.1",
     "tailwind-merge": "^3.0.2",
     "tailwind-variants": "^1.0.0",
     "tailwindcss": "^4.0.14",
