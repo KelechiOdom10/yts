@@ -1,0 +1,27 @@
+---
+import { Head, Logo } from "~/components/layout";
+import { Toast } from "~/components/ui";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description, image } = Astro.props;
+---
+
+<html lang="en">
+  <Head title={title} description={description} image={image} />
+  <body class="font-sans antialiased bg-bg relative">
+    <div
+      class="container mx-auto flex h-screen w-screen flex-col items-center justify-center"
+    >
+      <div class="absolute left-4 top-4 md:left-8 md:top-8">
+        <Logo />
+      </div>
+      <slot />
+      <Toast client:load />
+    </div>
+  </body>
+</html>
