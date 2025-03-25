@@ -1,8 +1,8 @@
+import { useState } from "react";
+import { toast } from "@pheralb/toast";
+import { authClient } from "~/lib/auth-client";
 import { Button, Card, Form, ShowMore, TextField } from "../ui";
 import { SocialLoginButton } from "./social-login-button";
-import { authClient } from "~/lib/auth-client";
-import { useState } from "react";
-import { toast } from "sonner";
 
 export const SignupForm = () => {
   const urlParams = new URLSearchParams(window?.location.search);
@@ -29,7 +29,7 @@ export const SignupForm = () => {
           window.location.href = `/verify?email=${email}`;
         },
         onError: ({ error }) => {
-          toast.error(error.message);
+          toast.error({ text: error.message });
         },
       },
     });
