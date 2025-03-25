@@ -8,7 +8,10 @@ import { Skeleton } from "../ui";
 import Logo from "./logo.astro";
 
 // Get the current path to highlight active navigation items
+console.log({ url: Astro.url });
 const currentPath = Astro.url.pathname;
+
+console.log({ currentPath });
 
 // Navigation items for the header
 const navItems = [
