@@ -138,6 +138,10 @@ const isInAppPath = pathname.startsWith("/app/");
 </script>
 
 <script is:inline define:vars={{ isInAppPath }}>
+  // Force light mode for non-app pages
+  document.documentElement.classList.remove("dark");
+  return;
+
   // Only allow theme toggling in app pages
   if (isInAppPath) {
     const getThemePreference = () => {
