@@ -2,24 +2,28 @@ import Elysia, { type Context } from "elysia";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { magicLink } from "better-auth/plugins";
+import { siteConfig } from "@yts/shared";
 import { db } from "../db";
-import { users, sessions, verifications, accounts } from "../db/schemas";
+import * as schema from "../db/schemas";
+import { sendMagicLinkEmail } from "../emails";
 
 const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "sqlite",
     usePlural: true,
-    schema: {
-      user: users,
-      session: sessions,
-      verification: verifications,
-      account: accounts,
-    },
+    schema,
   }),
   plugins: [
     magicLink({
-      sendMagicLink: async ({ email, token, url }, request) => {
-        // send email to user
+      sendMagicLink: async ({ email, url }) => {
+        const to = email;
+        const subject = `Your ${siteConfig.name} Login Link`;
+
+        await sendMagicLinkEmail({
+          to,
+          subject,
+          url,
+        });
       },
     }),
   ],
@@ -31,6 +35,9 @@ const auth = betterAuth({
   },
   rateLimit: {
     enabled: true,
+  },
+  account: {
+    accountLinking: { enabled: true },
   },
 });
 
