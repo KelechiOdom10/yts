@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { Button, cn } from "../ui";
+import { Button } from "../ui";
 import { authClient } from "~/lib/auth-client";
 
 interface SocialLoginButtonProps extends ComponentProps<typeof Button> {
