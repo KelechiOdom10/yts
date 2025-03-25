@@ -1,5 +1,6 @@
 ---
 import { Header, Footer, Head } from "~/components/layout";
+import { Toast } from "~/components/ui";
 
 interface Props {
   title?: string;
@@ -15,6 +16,7 @@ const { title, description, image } = Astro.props;
   <body class="font-sans antialiased bg-bg">
     <Header />
     <slot />
+    <Toast client:load />
     <Footer />
   </body>
 </html>
