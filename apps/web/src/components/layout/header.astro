@@ -48,7 +48,7 @@ const navItems = [
     <!-- User menu and mobile menu button -->
     <div class="flex items-center gap-2">
       <AuthMenu server:defer>
-        <Skeleton className="w-8 h-8" />
+        <Skeleton className="w-8 h-8 rounded-full" slot="fallback" />
       </AuthMenu>
       <!-- Mobile menu button -->
       <div class="flex items-center md:hidden">

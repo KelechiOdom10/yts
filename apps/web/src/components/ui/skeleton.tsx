@@ -16,8 +16,7 @@ const Skeleton = ({
       data-slot="skeleton"
       ref={ref}
       className={twMerge(
-        "shrink-0 animate-pulse rounded-lg",
-        soft ? "bg-muted" : "bg-secondary",
+        "shrink-0 animate-pulse rounded-lg bg-muted",
         className
       )}
       {...props}
