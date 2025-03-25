@@ -16,7 +16,7 @@ declare module "@tanstack/react-router" {
 }
 
 export const App = () => (
-  <ThemeProvider>
-    <RouterProvider router={router} />
-  </ThemeProvider>
+  // <ThemeProvider>
+  <RouterProvider router={router} />
+  // </ThemeProvider>
 );
