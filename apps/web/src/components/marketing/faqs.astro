@@ -57,7 +57,7 @@ const faqs = [
           faqs.map((faq, index) => (
             <div class="border-b border-border pb-4" data-faq>
               <button
-                class="flex w-full items-center justify-between py-2 text-left font-medium text-fg focus:outline-none"
+                class="flex w-full items-center justify-between py-2 text-left font-medium text-fg focus:outline-none cursor-pointer"
                 aria-expanded="false"
                 aria-controls={`faq-${index}`}
                 data-faq-toggle
@@ -165,4 +165,3 @@ const faqs = [
   document.addEventListener("DOMContentLoaded", initFAQs);
   document.addEventListener("astro:after-swap", initFAQs);
 </script>
-
