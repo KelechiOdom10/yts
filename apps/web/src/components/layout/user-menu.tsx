@@ -12,7 +12,7 @@ export const UserMenu = ({ user }: UserMenuProps) => {
     authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          window.location.href = "/";
+          window.location.reload();
           toast.success({ text: "Signed out" });
         },
       },
