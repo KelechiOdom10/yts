@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
-import notfoundImage from "./assets/404.png";
+import { siteConfig } from "@yts/shared";
 import { buttonStyles } from "~/components/ui/button";
+import notfoundImage from "./assets/404.png";
 
 interface Props {
   title?: string;
@@ -32,7 +33,7 @@ const {
     >
       <a href="/" class={buttonStyles({ variant: "primary" })}> Go Home </a>
       <a
-        href="mailto:contact@yts.ai"
+        href={`mailto:${siteConfig.email}`}
         class={buttonStyles({ variant: "outline" })}
       >
         Contact Support

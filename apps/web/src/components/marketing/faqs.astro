@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from "@yts/shared";
+
 const faqs = [
   {
     question: "What is VideoInsight?",
@@ -91,7 +93,7 @@ const faqs = [
       <div class="mt-12 text-center">
         <p class="text-fg/60">
           Still have questions? <a
-            href="mailto:contact@yts.ai"
+            href={`mailto:${siteConfig.email}`}
             class="text-primary font-medium hover:underline">Contact us</a
           >
         </p>
