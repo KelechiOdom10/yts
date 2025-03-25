@@ -31,7 +31,7 @@ interface FieldProps {
 const fieldStyles = tv({
   slots: {
     description: "text-pretty text-muted-fg text-sm/6",
-    label: "w-fit cursor-default font-medium text-secondary-fg text-sm/6",
+    label: "w-fit cursor-default font-medium text-fg text-sm/6",
     fieldError: "text-danger text-sm/6 forced-colors:text-[Mark]",
   },
 });
@@ -77,7 +77,7 @@ const FieldError = ({ className, ref, ...props }: FieldErrorProps) => {
 const fieldGroupStyles = tv({
   base: [
     "group flex h-10 items-center overflow-hidden rounded-lg border border-input shadow-xs transition duration-200 ease-out",
-    "relative focus-within:ring-4 group-invalid:focus-within:border-danger group-invalid:focus-within:ring-danger/20",
+    "relative focus-within:ring-2 group-invalid:focus-within:border-danger group-invalid:focus-within:ring-danger/20",
     "[&>[role=progressbar]:first-child]:ml-2.5 [&>[role=progressbar]:last-child]:mr-2.5",
     "**:data-[slot=icon]:size-4 **:data-[slot=icon]:shrink-0 **:[button]:shrink-0",
     "[&>button:has([data-slot=icon]):first-child]:left-0 [&>button:has([data-slot=icon]):last-child]:right-0 [&>button:has([data-slot=icon])]:absolute",
