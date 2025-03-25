@@ -1,4 +1,6 @@
 import type { User } from "better-auth";
+import { toast } from "@pheralb/toast";
+import { authClient } from "~/lib/auth-client";
 import { Avatar, Menu } from "../ui";
 
 interface UserMenuProps {
@@ -6,6 +8,17 @@ interface UserMenuProps {
 }
 
 export const UserMenu = ({ user }: UserMenuProps) => {
+  const handleSignOut = () => {
+    authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          window.location.href = "/";
+          toast.success({ text: "Signed out" });
+        },
+      },
+    });
+  };
+
   return (
     <Menu>
       <Menu.Trigger aria-label="User menu">
@@ -20,7 +33,9 @@ export const UserMenu = ({ user }: UserMenuProps) => {
         <Menu.Item href="/app/dashboard">Dashboard</Menu.Item>
         <Menu.Item href="/app/profile">Profile</Menu.Item>
         <Menu.Separator />
-        <Menu.Item isDanger={true}>Sign out</Menu.Item>
+        <Menu.Item isDanger={true} onAction={handleSignOut}>
+          Sign out
+        </Menu.Item>
       </Menu.Content>
     </Menu>
   );
