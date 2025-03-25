@@ -93,7 +93,8 @@ const navItems = [
 
 <script>
   // Mobile menu toggle
-  document.addEventListener("DOMContentLoaded", () => {
+
+  const initMobileMenu = () => {
     const button = document.querySelector(".mobile-menu-button");
     const menu = document.querySelector(".mobile-menu");
 
@@ -119,7 +120,10 @@ const navItems = [
         }
       });
     }
-  });
+  };
+
+  document.addEventListener("DOMContentLoaded", initMobileMenu);
+  document.addEventListener("astro:after-swap", initMobileMenu);
 </script>
 
 <!-- Spacer to prevent content from being hidden under the fixed header -->

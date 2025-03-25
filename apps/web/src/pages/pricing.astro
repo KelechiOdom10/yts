@@ -282,38 +282,46 @@ const featureComparison = [
 </Layout>
 
 <script>
-  // Toggle between monthly and annual pricing
-  const monthlyToggle = document.getElementById("monthly-toggle");
-  const annualToggle = document.getElementById("annual-toggle");
-  const freePrice = document.getElementById("free-price");
-  const freePeriod = document.getElementById("free-period");
-  const proPrice = document.getElementById("pro-price");
-  const proPeriod = document.getElementById("pro-period");
+  // Initialize pricing toggle functionality
+  const initPricingToggle = () => {
+    const monthlyToggle = document.getElementById("monthly-toggle");
+    const annualToggle = document.getElementById("annual-toggle");
+    const freePrice = document.getElementById("free-price");
+    const freePeriod = document.getElementById("free-period");
+    const proPrice = document.getElementById("pro-price");
+    const proPeriod = document.getElementById("pro-period");
 
-  if (
-    monthlyToggle &&
-    annualToggle &&
-    freePrice &&
-    freePeriod &&
-    proPrice &&
-    proPeriod
-  ) {
-    monthlyToggle.addEventListener("click", () => {
+    if (
+      monthlyToggle &&
+      annualToggle &&
+      freePrice &&
+      freePeriod &&
+      proPrice &&
+      proPeriod
+    ) {
+      monthlyToggle.addEventListener("click", () => {
+        monthlyToggle.classList.add("bg-primary", "text-primary-fg");
+        annualToggle.classList.remove("bg-primary", "text-primary-fg");
+        freePrice.textContent = "$0";
+        freePeriod.textContent = "/month";
+        proPrice.textContent = "$9";
+        proPeriod.textContent = "/month";
+      });
+
+      annualToggle.addEventListener("click", () => {
+        annualToggle.classList.add("bg-primary", "text-primary-fg");
+        monthlyToggle.classList.remove("bg-primary", "text-primary-fg");
+        freePrice.textContent = "$0";
+        freePeriod.textContent = "/year";
+        proPrice.textContent = "$90";
+        proPeriod.textContent = "/year";
+      });
+
+      // Set initial state
       monthlyToggle.classList.add("bg-primary", "text-primary-fg");
-      annualToggle.classList.remove("bg-primary", "text-primary-fg");
-      freePrice.textContent = "$0";
-      freePeriod.textContent = "/month";
-      proPrice.textContent = "$9";
-      proPeriod.textContent = "/month";
-    });
+    }
+  };
 
-    annualToggle.addEventListener("click", () => {
-      annualToggle.classList.add("bg-primary", "text-primary-fg");
-      monthlyToggle.classList.remove("bg-primary", "text-primary-fg");
-      freePrice.textContent = "$0";
-      freePeriod.textContent = "/year";
-      proPrice.textContent = "$90";
-      proPeriod.textContent = "/year";
-    });
-  }
+  document.addEventListener("DOMContentLoaded", initPricingToggle);
+  document.addEventListener("astro:after-swap", initPricingToggle);
 </script>

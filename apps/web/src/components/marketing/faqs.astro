@@ -162,10 +162,7 @@ const faqs = [
     });
   };
 
-  // Run initialization when the DOM is ready
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initFAQs);
-  } else {
-    initFAQs();
-  }
+  document.addEventListener("DOMContentLoaded", initFAQs);
+  document.addEventListener("astro:after-swap", initFAQs);
 </script>
+
