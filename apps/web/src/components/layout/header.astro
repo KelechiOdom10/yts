@@ -3,8 +3,9 @@ import { IconAlignmentCenter } from "justd-icons";
 import { siteConfig } from "@yts/shared";
 
 import { Button } from "../ui";
-import AuthMenu from "./auth-menu.astro";
-import { Skeleton } from "../ui";
+// import AuthMenu from "./auth-menu.astro";
+// import { Skeleton } from "../ui";
+import { AuthMenu } from "./auth-menu";
 import Logo from "./logo.astro";
 
 // Get the current path to highlight active navigation items
@@ -54,6 +55,7 @@ const navItems = [
           client:load
         />
       </AuthMenu> -->
+      <AuthMenu client:load />
       <!-- Mobile menu button -->
       <div class="flex items-center md:hidden">
         <Button
@@ -78,8 +80,8 @@ const navItems = [
           <a
             href={item.href}
             class={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
-              currentPath === item.href
-                ? "bg-primary-50 border-primary-500 text-primary-700"
+              currentPath === item.href || currentPath === `${item.href}/`
+                ? "bg-primary/ border-primary text-primary"
                 : "border-transparent text-fg hover:bg-primary/10 hover:border-primary"
             }`}
           >
