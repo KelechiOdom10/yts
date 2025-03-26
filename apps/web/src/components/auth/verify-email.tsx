@@ -24,7 +24,7 @@ export const VerifyEmail = () => {
   const email = urlParams.get("email");
 
   return (
-    <Card className="mx-auto w-full max-w-md bg-white">
+    <Card className="mx-auto w-full max-w-md bg-white px-4">
       <Card.Header>
         <Card.Title className="font-header text-2xl md:text-3xl">
           Check your inbox
