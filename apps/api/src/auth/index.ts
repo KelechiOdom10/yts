@@ -39,6 +39,12 @@ const auth = betterAuth({
   account: {
     accountLinking: { enabled: true },
   },
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 5 * 60, // 5 minutes in seconds
+    },
+  },
 });
 
 const betterAuthView = (context: Context) => {
