@@ -1,6 +1,7 @@
-import type { ComponentProps } from "react";
+import { useState, type ComponentProps } from "react";
 import { Button } from "../ui";
 import { authClient } from "~/lib/auth-client";
+import { toast } from "@pheralb/toast";
 
 interface SocialLoginButtonProps extends ComponentProps<typeof Button> {
   provider: "discord" | "google" | "github";
@@ -87,17 +88,31 @@ export const SocialLoginButton = ({
   redirectURL = "/app",
   ...props
 }: SocialLoginButtonProps) => {
+  const [isPending, setIsPending] = useState(false);
+
   return (
     <Button
       onPress={() =>
         authClient.signIn.social({
           provider,
-          callbackURL: redirectURL,
+          // callbackURL: redirectURL,
+          fetchOptions: {
+            onRequest: () => {
+              setIsPending(true);
+            },
+            onResponse: () => {
+              setIsPending(false);
+            },
+            onError: ({ error }) => {
+              toast.error({ text: error.message || "Something went wrong" });
+            },
+          },
         })
       }
       type="button"
       variant="outline"
       shape="square"
+      isPending={isPending}
       {...props}
     >
       {socialIcons[provider]}
