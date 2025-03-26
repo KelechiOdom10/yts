@@ -9,5 +9,8 @@ export const siteConfig = {
   description:
     "Transform how you learn from YouTube videos with AI-powered summaries, interactive chat, and personalized learning paths.",
   email: "contact@yts.ai",
-  url: "https://vidinsight.vercel.app",
+  url:
+    process.env.NODE_ENV === "production"
+      ? "https://vidinsight.vercel.app"
+      : "http://localhost:4321",
 };
