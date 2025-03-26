@@ -25,7 +25,7 @@ export default defineConfig({
     ],
   },
 
-  output: "static",
+  output: "server",
   adapter: vercel(),
   site: siteConfig.url,
   integrations: [react()],
