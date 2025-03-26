@@ -8,14 +8,14 @@ const providers = [
     icon: Gmail,
     label: "Gmail",
     getUrl: () =>
-      `https://mail.google.com/mail/u/0/#search/from:${encodeURIComponent("no-reply@yts.com")}`,
+      "https://mail.google.com/mail/u/0/#search/from:fallback@useplunk.net",
   },
   {
     id: "outlook",
     icon: Outlook,
     label: "Outlook",
     getUrl: () =>
-      `https://outlook.live.com/mail/0/inbox?search=from%3A${encodeURIComponent("no-reply@yts.com")}`,
+      "https://outlook.live.com/mail/0/inbox?search=from%3Afallback@useplunk.net",
   },
 ];
 
