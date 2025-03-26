@@ -90,8 +90,8 @@
     --overlay: oklch(0.98 0.01 80);
     --overlay-fg: oklch(0.15 0.03 70);
 
-    --accent: oklch(0.8 0.02 80);
-    --accent-fg: oklch(0.45 0.02 70);
+    --accent: oklch(92.02% 0.0112 89.72);
+    --accent-fg: oklch(0.15 0.03 70);
 
     /* Subtle beige muted */
     --muted: oklch(0.96 0.01 80);
