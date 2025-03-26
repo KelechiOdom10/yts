@@ -32,13 +32,11 @@ export const EmailWrapper = ({
       <Tailwind>
         <Body className="mx-auto my-auto bg-background font-sans">
           <Container className="mx-auto w-full max-w-[580px] px-10" {...props}>
-            <Link href={siteConfig.url} className="mt-6 mb-2 inline-block">
+            <Link href={siteConfig.url} className="mt-6 inline-block">
               <Img
-                src={`${siteConfig.url}/logo.svg`}
+                src={`${siteConfig.url}/logo.png`}
                 alt={`${siteConfig.name} Logo`}
-                width="572"
-                height="91"
-                className="h-6 w-auto"
+                className="-ml-5 h-12 w-auto"
               />
             </Link>
 
@@ -50,7 +48,7 @@ export const EmailWrapper = ({
               <Text>
                 Best,
                 <br />
-                {siteConfig.name}
+                The {siteConfig.name} Team
               </Text>
             )}
 
