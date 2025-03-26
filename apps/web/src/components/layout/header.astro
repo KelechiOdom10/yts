@@ -3,9 +3,9 @@ import { IconAlignmentCenter } from "justd-icons";
 import { siteConfig } from "@yts/shared";
 
 import { Button } from "../ui";
-// import AuthMenu from "./auth-menu.astro";
-// import { Skeleton } from "../ui";
-import { AuthMenu } from "./auth-menu";
+import AuthMenu from "./auth-menu.astro";
+import { Skeleton } from "../ui";
+// import { AuthMenu } from "./auth-menu";
 import Logo from "./logo.astro";
 
 // Get the current path to highlight active navigation items
@@ -48,14 +48,14 @@ const navItems = [
 
     <!-- User menu and mobile menu button -->
     <div class="flex items-center gap-2">
-      <!-- <AuthMenu server:defer>
+      <AuthMenu server:defer>
         <Skeleton
-          className="w-8 h-8 rounded-full"
+          className="w-9 h-9 rounded-full"
           slot="fallback"
           client:load
         />
-      </AuthMenu> -->
-      <AuthMenu client:load />
+      </AuthMenu>
+      <!-- <AuthMenu client:load /> -->
       <!-- Mobile menu button -->
       <div class="flex items-center md:hidden">
         <Button
