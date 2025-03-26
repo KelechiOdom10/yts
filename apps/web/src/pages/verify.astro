@@ -1,6 +1,15 @@
 ---
+import { auth } from "@yts/api";
 import { VerifyEmail } from "~/components/auth/verify-email";
 import AuthLayout from "~/layouts/AuthLayout.astro";
+
+const session = await auth.api.getSession({
+  headers: Astro.request.headers,
+});
+
+if (session) {
+  return Astro.redirect("/app");
+}
 ---
 
 <AuthLayout title="Verify Email">

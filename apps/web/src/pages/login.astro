@@ -1,6 +1,15 @@
 ---
+import { auth } from "@yts/api";
 import { LoginForm } from "~/components/auth/login-form";
 import AuthLayout from "~/layouts/AuthLayout.astro";
+
+const session = await auth.api.getSession({
+  headers: Astro.request.headers,
+});
+
+if (session) {
+  return Astro.redirect("/app");
+}
 ---
 
 <AuthLayout title="Login" description="Login to your account">
