@@ -95,7 +95,7 @@ export const SocialLoginButton = ({
       onPress={() =>
         authClient.signIn.social({
           provider,
-          // callbackURL: redirectURL,
+          callbackURL: redirectURL,
           fetchOptions: {
             onRequest: () => {
               setIsPending(true);

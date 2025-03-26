@@ -21,9 +21,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     !context.locals.session
   ) {
     // Redirect to login page if the user is not authenticated
-    return context.redirect(
-      `/login?next=${encodeURIComponent(context.url.pathname)}`,
-    );
+    return context.redirect(`/login?next=${context.url.pathname}`);
   }
 
   const authPages = ["/login", "/signup", "/verify"];

@@ -7,6 +7,7 @@ import { SocialLoginButton } from "./social-login-button";
 export const LoginForm = () => {
   const urlParams = new URLSearchParams(window?.location.search);
   const redirectURL = urlParams.get("next") || "/app";
+
   const [email, setEmail] = useState("");
   const [isPending, setIsPending] = useState(false);
 
@@ -71,10 +72,14 @@ export const LoginForm = () => {
           provider="google"
           label="Google"
           className="w-full"
+          redirectURL={redirectURL}
         />
         <p className="text-center text-fg/80 text-sm">
           Don't have an account?{" "}
-          <a href="/signup" className="font-semibold text-primary">
+          <a
+            href={`/signup?next=${redirectURL}`}
+            className="font-semibold text-primary"
+          >
             Sign up
           </a>
         </p>

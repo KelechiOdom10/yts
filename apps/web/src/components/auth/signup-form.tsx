@@ -81,10 +81,14 @@ export const SignupForm = () => {
           provider="google"
           label="Google"
           className="w-full"
+          redirectURL={redirectURL}
         />
         <p className="text-center text-fg/80 text-sm">
           Already have an account?{" "}
-          <a href="/login" className="font-semibold text-primary">
+          <a
+            href={`/login?next=${redirectURL}`}
+            className="font-semibold text-primary"
+          >
             Login
           </a>
         </p>
