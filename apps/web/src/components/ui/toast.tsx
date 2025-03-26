@@ -12,6 +12,7 @@ const Toast: FunctionComponent<ToasterProperties> = props => {
   return (
     <ToasterPrimitive
       theme={theme}
+      position="top-right"
       toastOptions={{
         font: "font-sans",
         animationOnClose: "slide",
