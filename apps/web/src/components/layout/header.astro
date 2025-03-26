@@ -50,12 +50,18 @@ const navItems = [
     <div class="flex items-center gap-2">
       <AuthMenu server:defer>
         <Skeleton
-          className="w-9 h-9 rounded-full"
+          className="w-8 h-8 rounded-full"
+          slot="fallback"
+          client:visible
+        />
+      </AuthMenu>
+      <!-- <AuthMenu client:load>
+        <Skeleton
+          className="w-8 h-8 rounded-full"
           slot="fallback"
           client:load
         />
-      </AuthMenu>
-      <!-- <AuthMenu client:load /> -->
+      </AuthMenu> -->
       <!-- Mobile menu button -->
       <div class="flex items-center md:hidden">
         <Button
