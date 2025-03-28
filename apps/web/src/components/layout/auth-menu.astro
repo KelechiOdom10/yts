@@ -1,16 +1,10 @@
 ---
 import { buttonStyles } from "~/components/ui/button";
 import { UserMenu } from "./user-menu";
-import { auth } from "@yts/api";
 
 export const prerender = false;
 
-const session = await auth.api.getSession({
-  headers: Astro.request.headers,
-});
-
-const user = session?.user;
-
+const user = Astro.locals.user;
 const isLoggedIn = !!user;
 ---
 
