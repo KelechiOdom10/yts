@@ -1,4 +1,5 @@
 import { type VariantProps, tv } from "tailwind-variants";
+import { useState } from "react";
 
 const avatar = tv({
   base: [
@@ -36,6 +37,7 @@ const Avatar = ({
   className,
   ...props
 }: AvatarProps & React.ComponentPropsWithoutRef<"span">) => {
+  const [source, setSource] = useState<string | null>(src);
   return (
     <span
       data-slot="avatar"
@@ -63,7 +65,14 @@ const Avatar = ({
           </text>
         </svg>
       )}
-      {src && <img className="size-full" src={src} alt={alt} />}
+      {source && (
+        <img
+          className="size-full"
+          src={source}
+          alt={alt}
+          onError={() => setSource(null)}
+        />
+      )}
     </span>
   );
 };
