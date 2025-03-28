@@ -48,7 +48,7 @@ const navItems = [
 
     <!-- User menu and mobile menu button -->
     <div class="flex items-center gap-2">
-      <AuthMenu server:defer>
+      <AuthMenu server:defer transition:persist>
         <Skeleton
           className="w-8 h-8 rounded-full"
           slot="fallback"

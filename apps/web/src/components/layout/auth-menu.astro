@@ -10,7 +10,7 @@ const isLoggedIn = !!user;
 
 {
   isLoggedIn ? (
-    <UserMenu user={user} client:load />
+    <UserMenu user={user} transition:persist client:load />
   ) : (
     <div class="flex items-center space-x-4">
       <a
