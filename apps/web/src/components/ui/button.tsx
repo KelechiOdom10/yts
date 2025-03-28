@@ -45,10 +45,10 @@ const buttonStyles = tv({
         "inset-shadow-danger-fg/30 pressed:inset-shadow-danger-fg/30 hover:inset-shadow-danger-fg/35",
       ],
       outline: [
-        "inset-ring-0 inset-shadow-none pressed:bg-secondary outline-ring [--btn-border:var(--color-border)] hover:bg-muted hover:text-muted-fg",
+        "inset-ring-0 inset-shadow-none pressed:bg-muted/80 outline-ring [--btn-border:var(--color-border)] hover:bg-muted hover:text-muted-fg",
       ],
       plain:
-        "inset-ring-0 inset-shadow-none pressed:bg-secondary outline-ring [--btn-border:transparent]",
+        "inset-ring-0 inset-shadow-none pressed:bg-muted/80 outline-ring [--btn-border:transparent]",
     },
     size: {
       "extra-small":
